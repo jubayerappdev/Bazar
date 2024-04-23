@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "864585130190",
+    "project_id": "bazar-aafa7",
+    "storage_bucket": "bazar-aafa7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:864585130190:android:0983efe938f63dafe3309f",
+        "android_client_info": {
+          "package_name": "com.creativeitinstitute.bazar"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC4K1Q3iQTlGBzGZsk0BCEVp9r1LNSO9fA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
