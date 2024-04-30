@@ -5,18 +5,54 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModel
+import androidx.navigation.fragment.findNavController
 import com.creativeitinstitute.bazar.R
+import com.creativeitinstitute.bazar.databinding.FragmentRegisterBinding
+import com.creativeitinstitute.bazar.isEmpty
 
 
 class RegisterFragment : Fragment() {
-
+    lateinit var binding: FragmentRegisterBinding
+    val viewModel: RegistrationViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_register, container, false)
+
+        binding = FragmentRegisterBinding.inflate(inflater, container, false)
+
+        setListener()
+
+        return binding.root
+    }
+
+    private fun setListener() {
+
+        with(binding) {
+            btnLogin.setOnClickListener {
+                findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
+            }
+            btnRegister.setOnClickListener {
+                etName.isEmpty()
+                etEmail.isEmpty()
+                etPassword.isEmpty()
+                if (!etName.isEmpty() && !etEmail.isEmpty() && !etPassword.isEmpty()) {
+                    Toast.makeText(context, "All input done !", Toast.LENGTH_LONG).show()
+
+
+                    val user = User(etName.text.toString(), etEmail.text.toString(), etPassword.text.toString(), "Seller","")
+                    viewModel.userRegistration(user)
+
+                }
+
+            }
+
+        }
     }
 
 
