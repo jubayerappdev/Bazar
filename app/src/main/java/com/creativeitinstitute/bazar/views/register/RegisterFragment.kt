@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
 import androidx.navigation.fragment.findNavController
 import com.creativeitinstitute.bazar.R
+import com.creativeitinstitute.bazar.core.DataState
 import com.creativeitinstitute.bazar.databinding.FragmentRegisterBinding
 import com.creativeitinstitute.bazar.isEmpty
 
@@ -27,8 +28,26 @@ class RegisterFragment : Fragment() {
         binding = FragmentRegisterBinding.inflate(inflater, container, false)
 
         setListener()
+        registrationObserver()
 
         return binding.root
+    }
+
+    private fun registrationObserver() {
+        viewModel.registrationResponse.observe(viewLifecycleOwner){
+
+            when(it){
+                is DataState.Error -> {
+                    Toast.makeText(context, it.message, Toast.LENGTH_SHORT).show()
+                }
+                is DataState.Loading -> {
+                    Toast.makeText(context, "Loading....", Toast.LENGTH_SHORT).show()
+                }
+                is DataState.Success -> {
+                    Toast.makeText(context, "created User : ${it.data}", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
     }
 
     private fun setListener() {
@@ -42,7 +61,7 @@ class RegisterFragment : Fragment() {
                 etEmail.isEmpty()
                 etPassword.isEmpty()
                 if (!etName.isEmpty() && !etEmail.isEmpty() && !etPassword.isEmpty()) {
-                    Toast.makeText(context, "All input done !", Toast.LENGTH_LONG).show()
+//                    Toast.makeText(context, "All input done !", Toast.LENGTH_LONG).show()
 
 
                     val user = User(etName.text.toString(), etEmail.text.toString(), etPassword.text.toString(), "Seller","")
