@@ -6,16 +6,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.creativeitinstitute.bazar.R
+import com.creativeitinstitute.bazar.base.BaseFragment
+import com.creativeitinstitute.bazar.databinding.FragmentDashboardBinding
 
-class DashboardFragment : Fragment() {
+class DashboardFragment : BaseFragment<FragmentDashboardBinding>(FragmentDashboardBinding::inflate) {
 
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_dashboard, container, false)
+    override fun setListener() {
+        TODO("Not yet implemented")
+    }
+
+    override fun allObserver() {
+        TODO("Not yet implemented")
     }
 
 

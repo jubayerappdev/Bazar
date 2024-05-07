@@ -14,7 +14,8 @@ class AuthService : AuthSource {
     }
 
     override fun userLogin(user: User) {
-        TODO("Not yet implemented")
+        val jAuth = FirebaseAuth.getInstance()
+        jAuth.signInWithEmailAndPassword(user.email, user.password)
     }
 
     override fun userForgetPassword(email: String) {

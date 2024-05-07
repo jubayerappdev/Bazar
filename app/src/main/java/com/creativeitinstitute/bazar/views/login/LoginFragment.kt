@@ -8,26 +8,14 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.creativeitinstitute.bazar.R
+import com.creativeitinstitute.bazar.base.BaseFragment
 import com.creativeitinstitute.bazar.databinding.FragmentLoginBinding
 import com.creativeitinstitute.bazar.isEmpty
 
 
-class LoginFragment : Fragment() {
-lateinit var binding: FragmentLoginBinding
+class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::inflate) {
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        binding = FragmentLoginBinding.inflate(inflater, container,false)
-
-        setListener()
-
-        return binding.root
-    }
-
-    private fun setListener() {
+    override fun setListener() {
 
         with(binding){
             btnRegister.setOnClickListener {
@@ -43,6 +31,10 @@ lateinit var binding: FragmentLoginBinding
             }
         }
 
+    }
+
+    override fun allObserver() {
+        TODO("Not yet implemented")
     }
 
 

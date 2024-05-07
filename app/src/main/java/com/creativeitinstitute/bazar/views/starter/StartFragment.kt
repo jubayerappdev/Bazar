@@ -7,36 +7,30 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.creativeitinstitute.bazar.R
+import com.creativeitinstitute.bazar.base.BaseFragment
 import com.creativeitinstitute.bazar.databinding.FragmentStartBinding
 
 
-class StartFragment : Fragment() {
+class StartFragment : BaseFragment<FragmentStartBinding>(FragmentStartBinding::inflate) {
 
-    private lateinit var binding: FragmentStartBinding
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
+    override fun setListener() {
 
-        binding = FragmentStartBinding.inflate(inflater, container, false)
 
-        stListener()
-        return binding.root
+            with(binding) {
+                btnLogin.setOnClickListener {
+                    findNavController().navigate(R.id.action_startFragment_to_loginFragment)
+                }
+                btnRegister.setOnClickListener {
+                    findNavController().navigate(R.id.action_startFragment_to_registerFragment)
+                }
+            }
+
+
     }
 
-    private fun stListener() {
-
-        with(binding){
-            btnLogin.setOnClickListener {
-                findNavController().navigate(R.id.action_startFragment_to_loginFragment)
-            }
-            btnRegister.setOnClickListener {
-                findNavController().navigate(R.id.action_startFragment_to_registerFragment)
-            }
-        }
-
+    override fun allObserver() {
+        TODO("Not yet implemented")
     }
 
 }
