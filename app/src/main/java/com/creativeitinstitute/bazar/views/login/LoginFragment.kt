@@ -11,8 +11,9 @@ import com.creativeitinstitute.bazar.R
 import com.creativeitinstitute.bazar.base.BaseFragment
 import com.creativeitinstitute.bazar.databinding.FragmentLoginBinding
 import com.creativeitinstitute.bazar.isEmpty
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::inflate) {
 
     override fun setListener() {
@@ -34,7 +35,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
     }
 
     override fun allObserver() {
-        TODO("Not yet implemented")
+
     }
 
 

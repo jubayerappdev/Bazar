@@ -8,16 +8,18 @@ import android.view.ViewGroup
 import com.creativeitinstitute.bazar.R
 import com.creativeitinstitute.bazar.base.BaseFragment
 import com.creativeitinstitute.bazar.databinding.FragmentDashboardBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class DashboardFragment : BaseFragment<FragmentDashboardBinding>(FragmentDashboardBinding::inflate) {
 
 
     override fun setListener() {
-        TODO("Not yet implemented")
+
     }
 
     override fun allObserver() {
-        TODO("Not yet implemented")
+
     }
 
 

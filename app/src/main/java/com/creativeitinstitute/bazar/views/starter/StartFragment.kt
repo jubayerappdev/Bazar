@@ -9,8 +9,9 @@ import androidx.navigation.fragment.findNavController
 import com.creativeitinstitute.bazar.R
 import com.creativeitinstitute.bazar.base.BaseFragment
 import com.creativeitinstitute.bazar.databinding.FragmentStartBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class StartFragment : BaseFragment<FragmentStartBinding>(FragmentStartBinding::inflate) {
 
 
@@ -30,7 +31,7 @@ class StartFragment : BaseFragment<FragmentStartBinding>(FragmentStartBinding::i
     }
 
     override fun allObserver() {
-        TODO("Not yet implemented")
+
     }
 
 }

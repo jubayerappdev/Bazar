@@ -14,8 +14,9 @@ import com.creativeitinstitute.bazar.base.BaseFragment
 import com.creativeitinstitute.bazar.core.DataState
 import com.creativeitinstitute.bazar.databinding.FragmentRegisterBinding
 import com.creativeitinstitute.bazar.isEmpty
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class RegisterFragment : BaseFragment<FragmentRegisterBinding> (FragmentRegisterBinding ::inflate) {
 
     val viewModel: RegistrationViewModel by viewModels()
