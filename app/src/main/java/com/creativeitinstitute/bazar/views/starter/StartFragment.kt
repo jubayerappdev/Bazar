@@ -9,6 +9,7 @@ import androidx.navigation.fragment.findNavController
 import com.creativeitinstitute.bazar.R
 import com.creativeitinstitute.bazar.base.BaseFragment
 import com.creativeitinstitute.bazar.databinding.FragmentStartBinding
+import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -16,6 +17,8 @@ class StartFragment : BaseFragment<FragmentStartBinding>(FragmentStartBinding::i
 
 
     override fun setListener() {
+
+        setUpAutoLogin()
 
 
             with(binding) {
@@ -28,6 +31,12 @@ class StartFragment : BaseFragment<FragmentStartBinding>(FragmentStartBinding::i
             }
 
 
+    }
+
+    private fun setUpAutoLogin() {
+        FirebaseAuth.getInstance().currentUser?.let {
+            findNavController().navigate(R.id.action_startFragment_to_SellerDashboardFragment)
+        }
     }
 
     override fun allObserver() {

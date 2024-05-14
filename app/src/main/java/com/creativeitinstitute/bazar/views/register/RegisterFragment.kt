@@ -1,13 +1,7 @@
 package com.creativeitinstitute.bazar.views.register
 
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModel
 import androidx.navigation.fragment.findNavController
 import com.creativeitinstitute.bazar.R
 import com.creativeitinstitute.bazar.base.BaseFragment
@@ -19,7 +13,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class RegisterFragment : BaseFragment<FragmentRegisterBinding> (FragmentRegisterBinding ::inflate) {
 
-    val viewModel: RegistrationViewModel by viewModels()
+   private val viewModel: RegistrationViewModel by viewModels()
 
 
     override fun setListener() {
@@ -36,7 +30,12 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding> (FragmentRegister
 //                    Toast.makeText(context, "All input done !", Toast.LENGTH_LONG).show()
 
 
-                    val user = User(etName.text.toString(), etEmail.text.toString(), etPassword.text.toString(), "Seller","")
+                    val user = UserRegister(etName.text.toString(),
+                        etEmail.text.toString(),
+                        etPassword.text.toString(),
+                        "Seller",
+                        ""
+                    )
                     viewModel.userRegistration(user)
 
                 }
@@ -66,6 +65,7 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding> (FragmentRegister
                 is DataState.Success -> {
                     loading.dismiss()
                     Toast.makeText(context, "created User : ${it.data}", Toast.LENGTH_SHORT).show()
+                    findNavController().navigate(R.id.action_registerFragment_to_SellerDashboardFragment)
                 }
             }
         }
