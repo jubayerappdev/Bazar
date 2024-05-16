@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:icon="@drawable/ic_products"
+        android:id="@+id/myProductFragment"
+        android:title="@string/products"
+        />
+    <item
+        android:icon="@drawable/ic_add_product"
+        android:id="@+id/uploadProductFragment"
+        android:title="@string/add"
+        />
+    <item
+        android:icon="@drawable/ic_profile"
+        android:id="@+id/sellerProfileFragment"
+        android:title="@string/profile"
+        />
+
+
+
+
+</menu>

@@ -1,5 +1,6 @@
 package com.creativeitinstitute.bazar.views.login
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -13,6 +14,7 @@ import com.creativeitinstitute.bazar.base.BaseFragment
 import com.creativeitinstitute.bazar.core.DataState
 import com.creativeitinstitute.bazar.databinding.FragmentLoginBinding
 import com.creativeitinstitute.bazar.isEmpty
+import com.creativeitinstitute.bazar.views.dashboard.seller.SellerDashboard
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -59,7 +61,8 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
                     loading.dismiss()
                     Toast.makeText(context, "User logged in : ${it.data}", Toast.LENGTH_SHORT).show()
 
-                    findNavController().navigate(R.id.action_loginFragment_to_SellerDashboardFragment)
+                    startActivity(Intent(requireContext(), SellerDashboard::class.java))
+                    requireActivity().finish()
                 }
             }
         }

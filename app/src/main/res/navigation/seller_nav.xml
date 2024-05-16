@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/seller_nav"
+    app:startDestination="@id/myProductFragment">
+
+    <fragment
+        android:id="@+id/myProductFragment"
+        android:name="com.creativeitinstitute.bazar.views.dashboard.seller.MyProductFragment"
+        android:label="Products"
+        tools:layout="@layout/fragment_my_product" />
+    <fragment
+        android:id="@+id/sellerProfileFragment"
+        android:name="com.creativeitinstitute.bazar.views.dashboard.seller.SellerProfileFragment"
+        android:label="Profile"
+        tools:layout="@layout/fragment_seller_profile" />
+    <fragment
+        android:id="@+id/uploadProductFragment"
+        android:name="com.creativeitinstitute.bazar.views.dashboard.seller.UploadProductFragment"
+        android:label="uploaded Product"
+        tools:layout="@layout/fragment_upload_product" />
+</navigation>
