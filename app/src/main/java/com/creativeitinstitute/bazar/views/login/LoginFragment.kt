@@ -21,6 +21,8 @@ import dagger.hilt.android.AndroidEntryPoint
 class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::inflate) {
 
     private val viewModel:LoginViewModel by viewModels()
+    override fun onViewCreated() {
+    }
 
     override fun setListener() {
 

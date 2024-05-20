@@ -16,6 +16,8 @@ import dagger.hilt.android.AndroidEntryPoint
 class RegisterFragment : BaseFragment<FragmentRegisterBinding> (FragmentRegisterBinding ::inflate) {
 
    private val viewModel: RegistrationViewModel by viewModels()
+    override fun onViewCreated() {
+    }
 
 
     override fun setListener() {

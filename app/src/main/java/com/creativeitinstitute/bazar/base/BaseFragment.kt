@@ -28,12 +28,13 @@ abstract class BaseFragment <VB : ViewBinding>(
        _binding =  bindingInflater.invoke(inflater)
 
         loading = ProgressDialog(requireContext())
-
+        onViewCreated()
         setListener()
         allObserver()
         return binding.root
     }
 
+    abstract fun onViewCreated()
     abstract fun setListener()
     abstract fun allObserver()
 

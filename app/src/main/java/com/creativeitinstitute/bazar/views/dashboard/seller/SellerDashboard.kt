@@ -23,16 +23,16 @@ class SellerDashboard : AppCompatActivity() {
 
         navController = findNavController(R.id.fragmentContainerView)
 
-        val appBarConfig = AppBarConfiguration(
-            setOf(
-                R.id.myProductFragment,
-                R.id.uploadProductFragment,
-                R.id.sellerProfileFragment,
-
-                )
-        )
+//        val appBarConfig = AppBarConfiguration(
+//            setOf(
+//                R.id.myProductFragment,
+//                R.id.uploadProductFragment,
+//                R.id.sellerProfileFragment,
+//
+//                )
+//        )
         binding.bottomNavigation.setupWithNavController(navController)
-        setupActionBarWithNavController(navController, appBarConfig)
+//        setupActionBarWithNavController(navController, appBarConfig)
 
 
 

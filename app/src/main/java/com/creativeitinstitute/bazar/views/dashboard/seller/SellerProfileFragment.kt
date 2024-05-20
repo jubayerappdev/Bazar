@@ -6,17 +6,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.creativeitinstitute.bazar.R
+import com.creativeitinstitute.bazar.base.BaseFragment
+import com.creativeitinstitute.bazar.databinding.FragmentSellerProfileBinding
 
 
-class SellerProfileFragment : Fragment() {
+class SellerProfileFragment : BaseFragment<FragmentSellerProfileBinding>(FragmentSellerProfileBinding::inflate) {
+    override fun onViewCreated() {
 
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_seller_profile, container, false)
+    }
+
+    override fun setListener() {
+    }
+
+    override fun allObserver() {
     }
 
 
