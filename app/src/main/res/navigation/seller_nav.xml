@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/myProductFragment"
-        android:name="com.creativeitinstitute.bazar.views.dashboard.seller.MyProductFragment"
+        android:name="com.creativeitinstitute.bazar.views.dashboard.seller.MyProductFragment.MyProductFragment"
         android:label="Products"
         tools:layout="@layout/fragment_my_product" />
     <fragment

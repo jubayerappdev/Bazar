@@ -1,15 +1,168 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/_ff5722"
-    tools:context=".views.dashboard.seller.MyProductFragment">
+    android:paddingStart="@dimen/_8sdp"
+    android:paddingEnd="@dimen/_8sdp"
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:context=".views.dashboard.seller.MyProductFragment.MyProductFragment">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/_12sdp"
+        android:paddingStart="@dimen/_10sdp"
+        android:paddingEnd="@dimen/_24sdp"
+        >
 
-    <!-- TODO: Update blank fragment layout -->
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="@dimen/_24sdp"
+            android:layout_height="@dimen/_24sdp"
+            android:src="@drawable/menu_icon"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <ImageView
+            android:layout_width="@dimen/_22sdp"
+            android:layout_height="@dimen/_22sdp"
+            android:layout_marginEnd="12dp"
+            android:src="@drawable/search_icon"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/imageView4"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="@dimen/_22sdp"
+            android:layout_height="@dimen/_22sdp"
+            android:src="@drawable/bag_icon"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:text="Categoris"
+        android:textColor="@color/black"
+        android:padding="@dimen/_10sdp"
+        android:textSize="@dimen/_22sdp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginEnd="@dimen/_10sdp"
+        >
 
-</FrameLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="All "
+                android:textSize="@dimen/_16sdp"
+                android:textColor="@color/_ff5722"
+                android:gravity="center"
+                android:layout_weight="1"/>
+            <View
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_3sdp"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:background="@drawable/round_underline"
+                android:layout_marginEnd="@dimen/_2sdp"
+
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Cloth "
+                android:textSize="@dimen/_16sdp"
+                android:gravity="center"
+                android:layout_weight="1"/>
+            <View
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_3sdp"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:background="@drawable/round_underline"
+                android:visibility="gone"
+
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Shoes "
+                android:textSize="@dimen/_16sdp"
+                android:gravity="center"
+                android:layout_weight="1"/>
+            <View
+                android:layout_width="@dimen/_45sdp"
+                android:layout_height="@dimen/_3sdp"
+                android:background="@drawable/round_underline"
+                android:visibility="gone"
+                android:layout_marginTop="@dimen/_4sdp"
+
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Watches "
+                android:textSize="@dimen/_16sdp"
+                android:gravity="center"
+                android:layout_weight="1"/>
+            <View
+                android:layout_width="@dimen/_64sdp"
+                android:layout_height="@dimen/_3sdp"
+                android:background="@drawable/round_underline"
+                android:visibility="gone"
+                android:layout_marginTop="@dimen/_4sdp"
+
+                />
+        </LinearLayout>
+
+    </LinearLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:id="@+id/rvProduct"
+        android:layout_marginTop="@dimen/_12sdp"
+        android:layout_height="wrap_content"
+
+        />
+
+</LinearLayout>

@@ -16,6 +16,8 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class StartFragment : BaseFragment<FragmentStartBinding>(FragmentStartBinding::inflate) {
+    override fun onViewCreated() {
+    }
 
 
     override fun setListener() {
