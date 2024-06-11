@@ -1,4 +1,4 @@
-package com.creativeitinstitute.bazar.views.dashboard.seller
+package com.creativeitinstitute.bazar.views.dashboard.seller.profile
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

@@ -1,12 +1,12 @@
 package com.creativeitinstitute.bazar.data
 
 data class Product(
-    val name:String="",
-    val price:Double=0.0,
-    val imageLink: String="",
-    val description: String="",
-    val amount:Int=0,
-    val sellerID:String="",
-    val productID:String=""
+    var name:String="",
+    var price:Double=0.0,
+    var imageLink: String="",
+    var description: String="",
+    var amount:Int=0,
+    var sellerID:String="",
+    var productID:String=""
 
 )

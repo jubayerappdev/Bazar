@@ -1,6 +1,7 @@
-package com.creativeitinstitute.bazar.data.models
+package com.creativeitinstitute.bazar.data.repository
 
 import com.creativeitinstitute.bazar.core.Nodes
+import com.creativeitinstitute.bazar.data.models.AuthSource
 import com.creativeitinstitute.bazar.views.login.UserLogin
 import com.creativeitinstitute.bazar.views.register.UserRegister
 import com.google.android.gms.tasks.Task

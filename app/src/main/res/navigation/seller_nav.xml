@@ -7,17 +7,17 @@
 
     <fragment
         android:id="@+id/myProductFragment"
-        android:name="com.creativeitinstitute.bazar.views.dashboard.seller.MyProductFragment"
+        android:name="com.creativeitinstitute.bazar.views.dashboard.seller.products.MyProductFragment"
         android:label="Products"
         tools:layout="@layout/fragment_my_product" />
     <fragment
         android:id="@+id/sellerProfileFragment"
-        android:name="com.creativeitinstitute.bazar.views.dashboard.seller.SellerProfileFragment"
+        android:name="com.creativeitinstitute.bazar.views.dashboard.seller.profile.SellerProfileFragment"
         android:label="Profile"
         tools:layout="@layout/fragment_seller_profile" />
     <fragment
         android:id="@+id/uploadProductFragment"
-        android:name="com.creativeitinstitute.bazar.views.dashboard.seller.UploadProductFragment"
+        android:name="com.creativeitinstitute.bazar.views.dashboard.seller.upload.UploadProductFragment"
         android:label="uploaded Product"
         tools:layout="@layout/fragment_upload_product" />
 </navigation>
