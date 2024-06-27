@@ -27,7 +27,7 @@ class ProductViewModel @Inject constructor(private val repo: SellerRepository):V
 
             document.documents.forEach { doc->
 
-                val product = doc.toObject(Product::class.java)?.let {
+                doc.toObject(Product::class.java)?.let {
                     productList.add(it)
                 }
 
