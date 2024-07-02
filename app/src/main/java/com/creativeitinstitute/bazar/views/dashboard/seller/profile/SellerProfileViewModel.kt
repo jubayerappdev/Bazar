@@ -15,72 +15,58 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class SellerProfileViewModel @Inject constructor(private val repo : SellerProfileRepository):ViewModel(){
+class SellerProfileViewModel @Inject constructor(private val repo: SellerProfileRepository) : ViewModel() {
 
     private val _profileUpdateResponse = MutableLiveData<DataState<String>>()
-    val profileUpdateResponse : LiveData<DataState<String>> = _profileUpdateResponse
+    val profileUpdateResponse: LiveData<DataState<String>> = _profileUpdateResponse
 
-
-    fun updateProfile(user: SellerProfile, hashLocalImageUrl : Boolean){
-
+    fun updateProfile(user: SellerProfile, hasLocalImageUrl: Boolean) {
         _profileUpdateResponse.postValue(DataState.Loading())
 
-        if (hashLocalImageUrl){
-
+        if (hasLocalImageUrl) {
             val imageUri: Uri? = user.userImage?.toUri()
-
             imageUri?.let {
-                repo.uploadImage(it).addOnSuccessListener { snapshot->
-
-                    snapshot.metadata?.reference?.downloadUrl?.addOnSuccessListener {url->
+                repo.uploadImage(it).addOnSuccessListener { snapshot ->
+                    snapshot.metadata?.reference?.downloadUrl?.addOnSuccessListener { url ->
                         user.userImage = url.toString()
-
                         repo.updateUser(user).addOnSuccessListener {
                             _profileUpdateResponse.postValue(DataState.Success("Uploaded and Updated user Profile Successfully!"))
                         }.addOnFailureListener {
-                            _profileUpdateResponse.postValue(DataState.Error("${it.message}"))
+                            _profileUpdateResponse.postValue(DataState.Error(it.message ?: "An unknown error occurred"))
                         }
-
-
                     }
                 }.addOnFailureListener {
-                    _profileUpdateResponse.postValue(DataState.Error("Image Uploaded fail..."))
+                    _profileUpdateResponse.postValue(DataState.Error("Image Upload failed..."))
                 }
             }
-        }else{
+        } else {
             repo.updateUser(user).addOnSuccessListener {
                 _profileUpdateResponse.postValue(DataState.Success("Uploaded and Updated user Profile Successfully!"))
             }.addOnFailureListener {
-                _profileUpdateResponse.postValue(DataState.Error("${it.message}"))
+                _profileUpdateResponse.postValue(DataState.Error(it.message ?: "An unknown error occurred"))
             }
         }
-
-
-
     }
 
+    private val _loggedInUserResponse = MutableLiveData<DataState<SellerProfile>>()
+    val loggedInUserResponse: LiveData<DataState<SellerProfile>> get() = _loggedInUserResponse
 
+    fun getUserByUserID(userID: String) {
+        _loggedInUserResponse.postValue(DataState.Loading())
 
-
-    private val _logedInUserResponse = MutableLiveData<DataState<SellerProfile>>()
-    val logedInUserResponse : LiveData<DataState<SellerProfile>>
-        get() = _logedInUserResponse
-    fun getUserByUserID(userID: String){
-
-        _logedInUserResponse.postValue(DataState.Loading())
-
-        repo.getUserByUserID(userID).addOnSuccessListener{ value->
-
-            _logedInUserResponse.postValue(DataState.Success(
-
-                value.documents[0].toObject(
-                    SellerProfile::class.java
+        repo.getUserByUserID(userID).addOnSuccessListener { value ->
+            val documents = value.documents
+            if (documents.isNotEmpty()) {
+                _loggedInUserResponse.postValue(
+                    DataState.Success(
+                        documents[0].toObject(SellerProfile::class.java)
+                    )
                 )
-            ))
-
+            } else {
+                _loggedInUserResponse.postValue(DataState.Error("No user found with this ID"))
+            }
+        }.addOnFailureListener {
+            _loggedInUserResponse.postValue(DataState.Error(it.message ?: "An unknown error occurred"))
         }
-
-
     }
-
 }

@@ -29,12 +29,14 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class SellerProfileFragment : BaseFragment<FragmentSellerProfileBinding>(FragmentSellerProfileBinding::inflate) {
 
-    private var sellerProfile:SellerProfile? = null
-    private val viewModel:SellerProfileViewModel by viewModels()
+    private var sellerProfile: SellerProfile? = null
+    private val viewModel: SellerProfileViewModel by viewModels()
 
-    private var hashLocalImageUrl : Boolean = false
+    private var hasLocalImageUrl: Boolean = false
+    private lateinit var permissionRequest: ActivityResultLauncher<Array<String>>
+
     override fun setListener() {
-
+    
         FirebaseAuth.getInstance().currentUser?.let {
             viewModel.getUserByUserID(it.uid)
         }
@@ -49,86 +51,68 @@ class SellerProfileFragment : BaseFragment<FragmentSellerProfileBinding>(Fragmen
                 val name = etName.extract()
                 val email = etEmail.extract()
 
-                sellerProfile.apply {
-                    this?.name = name
-                    this?.email = email
+                sellerProfile?.apply {
+                    this.name = name
+                    this.email = email
                 }
 
                 updateProfile(sellerProfile)
-
-
             }
         }
-
     }
 
     private fun updateProfile(sellerProfile: SellerProfile?) {
-        sellerProfile?.let { viewModel.updateProfile(it, hashLocalImageUrl) }
+        sellerProfile?.let { viewModel.updateProfile(it, hasLocalImageUrl) }
     }
 
     override fun allObserver() {
-        viewModel.profileUpdateResponse.observe(viewLifecycleOwner){
-            when(it){
-                is DataState.Error->{
+        viewModel.profileUpdateResponse.observe(viewLifecycleOwner) {
+            when (it) {
+                is DataState.Error -> {
                     loading.dismiss()
-
                 }
-                is DataState.Loading ->{
+                is DataState.Loading -> {
                     loading.show()
-
                 }
-                is DataState.Success ->{
-
-                    Toast.makeText(requireContext(),it.data, Toast.LENGTH_LONG).show()
+                is DataState.Success -> {
+                    Toast.makeText(requireContext(), it.data, Toast.LENGTH_LONG).show()
                     loading.dismiss()
-
-
-
                 }
             }
         }
-        viewModel.logedInUserResponse.observe(viewLifecycleOwner){
-            when(it){
-                is DataState.Error->{
+        viewModel.loggedInUserResponse.observe(viewLifecycleOwner) {
+            when (it) {
+                is DataState.Error -> {
                     loading.dismiss()
-
                 }
-                is DataState.Loading ->{
+                is DataState.Loading -> {
                     loading.show()
-
                 }
-                is DataState.Success ->{
+                is DataState.Success -> {
                     sellerProfile = it.data
                     sellerProfileData(sellerProfile)
-
                     loading.dismiss()
-
-
-
                 }
             }
         }
-
     }
 
     private fun sellerProfileData(sellerProfile: SellerProfile?) {
-        hashLocalImageUrl = sellerProfile?.userImage.isNullOrBlank()
+        hasLocalImageUrl = sellerProfile?.userImage.isNullOrBlank()
 
         binding.apply {
             etName.setText(sellerProfile?.name)
             etEmail.setText(sellerProfile?.email)
             ivProfile.load(sellerProfile?.userImage)
         }
-
     }
 
-    companion object{
+    companion object {
         private val permissionList = arrayOf(
             Manifest.permission.READ_EXTERNAL_STORAGE,
             Manifest.permission.CAMERA
         )
     }
-    private lateinit var permissionRequest: ActivityResultLauncher<Array<String>>
 
     private val startForProfileImageResult =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
@@ -136,17 +120,12 @@ class SellerProfileFragment : BaseFragment<FragmentSellerProfileBinding>(Fragmen
             val data = result.data
 
             if (resultCode == Activity.RESULT_OK) {
-                //Image Uri will not be null for RESULT_OK
                 val fileUri = data?.data!!
                 Log.d("TAG", "$fileUri ")
 
                 binding.ivProfile.setImageURI(fileUri)
                 sellerProfile?.userImage = fileUri.toString()
-                hashLocalImageUrl = true
-
-
-
-
+                hasLocalImageUrl = true
             } else if (resultCode == ImagePicker.RESULT_ERROR) {
                 Toast.makeText(requireContext(), ImagePicker.getError(data), Toast.LENGTH_SHORT).show()
             } else {
@@ -155,24 +134,18 @@ class SellerProfileFragment : BaseFragment<FragmentSellerProfileBinding>(Fragmen
         }
 
     private fun getPermissionRequest(): ActivityResultLauncher<Array<String>> {
-        return registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()){
-
-            if (areAllPermissionGranted(permissionList)){
-                //ase
-
-                Toast.makeText(requireContext(),"Ase", Toast.LENGTH_LONG).show()
-
+        return registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissions ->
+            if (areAllPermissionGranted(permissionList)) {
+                Toast.makeText(requireContext(), "Granted", Toast.LENGTH_LONG).show()
                 ImagePicker.with(this)
-                    .compress(1024)         //Final image size will be less than 1 MB(Optional)
-                    .maxResultSize(512, 512)  //Final image resolution will be less than 1080 x 1080(Optional)
+                    .compress(1024)
+                    .maxResultSize(512, 512)
                     .createIntent { intent ->
                         startForProfileImageResult.launch(intent)
                     }
-            }else{
-                //nai
-                Toast.makeText(requireContext(),"Nai", Toast.LENGTH_LONG).show()
+            } else {
+                Toast.makeText(requireContext(), "Not Granted", Toast.LENGTH_LONG).show()
             }
         }
     }
-
 }
