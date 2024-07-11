@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/customerHomeFragment">
+
+
+    <fragment
+        android:id="@+id/customerHomeFragment"
+        android:name="com.creativeitinstitute.bazar.CustomerHomeFragment"
+        android:label="fragment_customer_home"
+        tools:layout="@layout/fragment_customer_home" />
+    <fragment
+        android:id="@+id/customerCartFragment"
+        android:name="com.creativeitinstitute.bazar.CustomerCartFragment"
+        android:label="fragment_customer_cart"
+        tools:layout="@layout/fragment_customer_cart" />
+    <fragment
+        android:id="@+id/customerProfileFragment"
+        android:name="com.creativeitinstitute.bazar.CustomerProfileFragment"
+        android:label="fragment_customer_profile"
+        tools:layout="@layout/fragment_customer_profile" />
+    <fragment
+        android:id="@+id/customerMessageFragment"
+        android:name="com.creativeitinstitute.bazar.CustomerMessageFragment"
+        android:label="fragment_customer_message"
+        tools:layout="@layout/fragment_customer_message" />
+    <fragment
+        android:id="@+id/customerWishlistFragment"
+        android:name="com.creativeitinstitute.bazar.CustomerWishlistFragment"
+        android:label="fragment_customer_wishlist"
+        tools:layout="@layout/fragment_customer_wishlist" />
+</navigation>

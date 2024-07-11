@@ -2,16 +2,9 @@ package com.creativeitinstitute.bazar.data.repository
 
 import android.net.Uri
 import com.creativeitinstitute.bazar.core.Nodes
-import com.creativeitinstitute.bazar.data.Product
-import com.creativeitinstitute.bazar.data.models.AuthSource
-import com.creativeitinstitute.bazar.data.models.SellerSource
-import com.creativeitinstitute.bazar.views.dashboard.seller.profile.SellerProfile
+import com.creativeitinstitute.bazar.views.dashboard.seller.profile.Profile
 import com.creativeitinstitute.bazar.views.dashboard.seller.profile.toMap
-import com.creativeitinstitute.bazar.views.login.UserLogin
-import com.creativeitinstitute.bazar.views.register.UserRegister
 import com.google.android.gms.tasks.Task
-import com.google.firebase.auth.AuthResult
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.storage.StorageReference
@@ -24,19 +17,19 @@ class SellerProfileRepository @Inject constructor(
     ) {
      fun uploadImage(productImageUri: Uri) : UploadTask{
 
-        val storage: StorageReference = storageRef.child("Prrofile").child("USER_${System.currentTimeMillis()}")
+        val storage: StorageReference = storageRef.child("Profile").child("USER_${System.currentTimeMillis()}")
 
        return storage.putFile(productImageUri)
 
     }
 
-    fun updateUser(user: SellerProfile):Task<Void> {
+    fun updateUser(user: Profile):Task<Void> {
 
       return db.collection(Nodes.USER).document(user.userID).update(user.toMap())
 
     }
      fun getUserByUserID(userID: String) :Task<QuerySnapshot> {
-        return  db.collection(Nodes.PRODUCT).whereEqualTo("userID", userID).get()
+        return  db.collection(Nodes.USER).whereEqualTo("userID", userID).get()
     }
 
 

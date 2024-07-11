@@ -1,16 +1,12 @@
 package com.creativeitinstitute.bazar.views.dashboard.seller.profile
 
 import android.net.Uri
-import android.util.Log
 import androidx.core.net.toUri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.creativeitinstitute.bazar.core.DataState
-import com.creativeitinstitute.bazar.data.Product
-import com.creativeitinstitute.bazar.data.repository.AuthRepository
 import com.creativeitinstitute.bazar.data.repository.SellerProfileRepository
-import com.creativeitinstitute.bazar.data.repository.SellerRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -21,7 +17,7 @@ class SellerProfileViewModel @Inject constructor(private val repo : SellerProfil
     val profileUpdateResponse : LiveData<DataState<String>> = _profileUpdateResponse
 
 
-    fun updateProfile(user: SellerProfile, hashLocalImageUrl : Boolean){
+    fun updateProfile(user: Profile, hashLocalImageUrl : Boolean){
 
         _profileUpdateResponse.postValue(DataState.Loading())
 
@@ -62,19 +58,17 @@ class SellerProfileViewModel @Inject constructor(private val repo : SellerProfil
 
 
 
-    private val _logedInUserResponse = MutableLiveData<DataState<SellerProfile>>()
-    val logedInUserResponse : LiveData<DataState<SellerProfile>>
+    private val _logedInUserResponse = MutableLiveData<DataState<Profile>>()
+    val logedInUserResponse : LiveData<DataState<Profile>>
         get() = _logedInUserResponse
     fun getUserByUserID(userID: String){
 
         _logedInUserResponse.postValue(DataState.Loading())
 
         repo.getUserByUserID(userID).addOnSuccessListener{ value->
-
             _logedInUserResponse.postValue(DataState.Success(
-
                 value.documents[0].toObject(
-                    SellerProfile::class.java
+                    Profile::class.java
                 )
             ))
 

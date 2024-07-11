@@ -2,26 +2,19 @@ package com.creativeitinstitute.bazar.views.dashboard.seller.profile
 
 import android.Manifest
 import android.app.Activity
-import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.viewModels
 import coil.load
-import com.creativeitinstitute.bazar.R
 import com.creativeitinstitute.bazar.base.BaseFragment
 import com.creativeitinstitute.bazar.core.DataState
 import com.creativeitinstitute.bazar.core.areAllPermissionGranted
 import com.creativeitinstitute.bazar.core.extract
 import com.creativeitinstitute.bazar.core.requestPermissions
 import com.creativeitinstitute.bazar.databinding.FragmentSellerProfileBinding
-import com.creativeitinstitute.bazar.views.dashboard.seller.upload.UploadProductFragment
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.AndroidEntryPoint
@@ -29,7 +22,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class SellerProfileFragment : BaseFragment<FragmentSellerProfileBinding>(FragmentSellerProfileBinding::inflate) {
 
-    private var sellerProfile:SellerProfile? = null
+    private var sellerProfile:Profile? = null
     private val viewModel:SellerProfileViewModel by viewModels()
 
     private var hashLocalImageUrl : Boolean = false
@@ -62,7 +55,7 @@ class SellerProfileFragment : BaseFragment<FragmentSellerProfileBinding>(Fragmen
 
     }
 
-    private fun updateProfile(sellerProfile: SellerProfile?) {
+    private fun updateProfile(sellerProfile: Profile?) {
         sellerProfile?.let { viewModel.updateProfile(it, hashLocalImageUrl) }
     }
 
@@ -111,7 +104,7 @@ class SellerProfileFragment : BaseFragment<FragmentSellerProfileBinding>(Fragmen
 
     }
 
-    private fun sellerProfileData(sellerProfile: SellerProfile?) {
+    private fun sellerProfileData(sellerProfile: Profile?) {
         hashLocalImageUrl = sellerProfile?.userImage.isNullOrBlank()
 
         binding.apply {

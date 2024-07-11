@@ -4,5 +4,6 @@
         <!-- Customize your dark theme here. -->
         <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
     </style>
-    <style name="Theme.Bazar.App.bar" parent="Theme.Material3.DayNight"/>
+
+    <style name="Theme.Bazar.App.bar" parent="Theme.Material3.DayNight" />
 </resources>

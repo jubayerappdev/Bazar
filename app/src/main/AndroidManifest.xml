@@ -6,12 +6,11 @@
         android:name="android.hardware.camera"
         android:required="false" />
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-
-    <uses-permission android:name="android.permission.CAMERA"/>
-
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"
-        android:maxSdkVersion="32"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission
+        android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32" />
 
     <application
         android:name=".di.MyApp"
@@ -25,9 +24,13 @@
         android:theme="@style/Theme.Bazar"
         tools:targetApi="31">
         <activity
-            android:theme="@style/Theme.Bazar.App.bar"
+            android:name=".views.dashboard.customer.CustomerDashboard"
+            android:exported="false"
+            android:theme="@style/Theme.Bazar" />
+        <activity
             android:name=".views.dashboard.seller.SellerDashboard"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.Bazar.App.bar" />
         <activity
             android:name=".views.starter.MainActivity"
             android:exported="true">
