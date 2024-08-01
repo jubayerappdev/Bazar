@@ -26,20 +26,7 @@ class LoginViewModel @Inject constructor(private val authService: AuthRepository
 
             Log.d("TAG", "login: Success ")
 
-            it.user?.uid?.let { it1 ->
-                authService.getUserByUserID(it1).addOnSuccessListener{ value->
-                    _loginResponse.postValue(DataState.Success(
-                        value.documents[0].toObject(
-                            Profile::class.java
-                        )
-                    ))
-
-                }.addOnFailureListener { error->
-
-                    _loginResponse.postValue(DataState.Error("${error.message}"))
-
-                }
-            }
+         checkUserByID(it.user?.uid)
         }.addOnFailureListener {error->
 
             _loginResponse.postValue(DataState.Error("${error.message}"))
@@ -48,6 +35,24 @@ class LoginViewModel @Inject constructor(private val authService: AuthRepository
 
     }
 
+    fun checkUserByID(uid: String?) {
+
+        uid?.let { userId ->
+            authService.getUserByUserID(userId).addOnSuccessListener{ value->
+                _loginResponse.postValue(DataState.Success(
+                    value.documents[0].toObject(
+                        Profile::class.java
+                    )
+                ))
+
+            }.addOnFailureListener { error->
+
+                _loginResponse.postValue(DataState.Error("${error.message}"))
+
+            }
+        }
+
+    }
 
 
 }

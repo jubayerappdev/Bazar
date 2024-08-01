@@ -9,26 +9,26 @@
     <fragment
         android:id="@+id/customerHomeFragment"
         android:name="com.creativeitinstitute.bazar.CustomerHomeFragment"
-        android:label="fragment_customer_home"
+        android:label="Home"
         tools:layout="@layout/fragment_customer_home" />
     <fragment
         android:id="@+id/customerCartFragment"
         android:name="com.creativeitinstitute.bazar.CustomerCartFragment"
-        android:label="fragment_customer_cart"
+        android:label="Cart"
         tools:layout="@layout/fragment_customer_cart" />
     <fragment
         android:id="@+id/customerProfileFragment"
         android:name="com.creativeitinstitute.bazar.CustomerProfileFragment"
-        android:label="fragment_customer_profile"
+        android:label="Profile"
         tools:layout="@layout/fragment_customer_profile" />
     <fragment
         android:id="@+id/customerMessageFragment"
         android:name="com.creativeitinstitute.bazar.CustomerMessageFragment"
-        android:label="fragment_customer_message"
+        android:label="Message"
         tools:layout="@layout/fragment_customer_message" />
     <fragment
         android:id="@+id/customerWishlistFragment"
         android:name="com.creativeitinstitute.bazar.CustomerWishlistFragment"
-        android:label="fragment_customer_wishlist"
+        android:label="WishList"
         tools:layout="@layout/fragment_customer_wishlist" />
 </navigation>

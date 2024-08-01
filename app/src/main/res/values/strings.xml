@@ -57,4 +57,7 @@
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
     <string name="welcome_to_bazaar">Welcome to Bazaar</string>
+    <string name="welcome">Welcome to Bazaar</string>
+    <string name="login">Login</string>
+    <string name="rgister">Rgister</string>
 </resources>
